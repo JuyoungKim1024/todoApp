@@ -1,33 +1,17 @@
-import { useState } from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Form from './pages/Form'
+import List from './pages/List'
+import Main from './pages/Main'
 
 function App() {
-    const [todos, setTodos] = useState(['공부하기', '야구보기', '저녁먹기'])
-
-    const handleOnsubmit = (e) => {
-        e.preventDefault()
-        const form = e.target
-
-        setTodos([...todos, form.todo.value])
-    }
-    const removeTodo = () => {
-        console.log('삭제')
-    }
     return (
-        <>
-            <form onSubmit={handleOnsubmit}>
-                <input type="text" name="todo" />
-                <button type="submit">입력</button>
-            </form>
-
-            <ul>
-                {todos.map((todo, index) => (
-                    <li key={index}>
-                        {todo}
-                        <button onClick={removeTodo}>x</button>
-                    </li>
-                ))}
-            </ul>
-        </>
+        <BrowserRouter>
+            <Routes>
+                <Route index element={<Main />}></Route>
+                <Route path="/list" element={<List />}></Route>
+                <Route path="/new" element={<Form />}></Route>
+            </Routes>
+        </BrowserRouter>
     )
 }
 
