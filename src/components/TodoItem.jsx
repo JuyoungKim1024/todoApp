@@ -1,0 +1,14 @@
+import { useTodos } from '../context/TodoContext'
+
+function TodoItem({ todo }) {
+    const { removeTodo, toggleTodo } = useTodos()
+    return (
+        <li>
+            <input type="checkbox" onChange={() => toggleTodo(todo.id)} checked={todo.completed} />
+            {todo.id} / {todo.todo}
+            <button onClick={() => removeTodo(todo.id)}>X</button>
+        </li>
+    )
+}
+
+export default TodoItem
